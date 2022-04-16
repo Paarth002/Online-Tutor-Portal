@@ -13,10 +13,9 @@ import pic from "./../../images/profile.jpg";
 import SearchBar from "../Search/Search";
 import SearchBarT from "../Search/SearchT";
 
-
 const Navbarr = () => {
-  let url = window.location.href.substring(21,);
-  
+  let url = window.location.href.substring(21);
+
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const dispatch = useDispatch();
   const location = useLocation();
@@ -29,7 +28,6 @@ const Navbarr = () => {
 
     setUser(null);
   };
-  
 
   useEffect(() => {
     const token = user?.token;
@@ -62,10 +60,18 @@ const Navbarr = () => {
             <Nav.Link href="/courses">Courses</Nav.Link>
           </Nav>
           <Nav className="me-auto">
-          {url === "/courses" || url.substring(0,11) === "/courseinfo" ? <SearchBar />:''}
-          {url === "/tutors" || url.substring(0,10) === "/tutorinfo" ? <SearchBarT />:''}
+            {url === "/courses" || url.substring(0, 11) === "/courseinfo" ? (
+              <SearchBar />
+            ) : (
+              ""
+            )}
+            {url === "/tutors" || url.substring(0, 10) === "/tutorinfo" ? (
+              <SearchBarT />
+            ) : (
+              ""
+            )}
           </Nav>
-          
+
           <Nav>
             {user?.result ? (
               <>
@@ -77,7 +83,6 @@ const Navbarr = () => {
                       width="37"
                       height="37"
                       className="d-inline-block "
-                      alt="Website logo"
                     />
                   </Dropdown.Toggle>
                   <Dropdown.Menu variant="dark">

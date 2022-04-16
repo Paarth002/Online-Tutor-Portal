@@ -16,7 +16,7 @@ class CreateParentAndStudent extends Component {
       year_of_study: "",
     };
   }
-  
+
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -25,23 +25,27 @@ class CreateParentAndStudent extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     axios
-    .post("/users/createParent", this.state)
-    .then((response) => {
-      console.log(response);
-      alert("Successfully Created User")
-    })
-    .catch((err) => {console.log(err);alert("Failed to create user")});
+      .post("/users/createParent", this.state)
+      .then((response) => {
+        console.log(response);
+        alert("Successfully Created User");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Failed to create user");
+      });
   };
   render() {
     const { name, email, student_email, student_name, year_of_study } =
-    this.state;
+      this.state;
     return (
       <div>
         <form className="form" onSubmit={this.handleSubmit}>
           <div className="form-body">
             <div>
-              <label className="form__label">Parent Name: {name}</label>
+              <label className="form__label">Parent Name: {name}</label> <br />
             </div>
+
             <div>
               <label className="form__label">Parent Email: {email}</label>
             </div>
@@ -76,7 +80,9 @@ class CreateParentAndStudent extends Component {
               ></input>
             </div>
             <div>
-            <Button type="submit" variant="primary">Submit</Button>
+              <Button type="submit" variant="primary">
+                Submit
+              </Button>
             </div>
           </div>
         </form>
